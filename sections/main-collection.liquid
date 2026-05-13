@@ -1,0 +1,47 @@
+<section class="collection">
+  <div class="container">
+    <header class="collection__header">
+      <h1 class="collection__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection__description">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="collection__toolbar">
+      <p class="collection__count">{{ collection.products_count }} products</p>
+      <form class="collection__sort">
+        <label for="SortBy" class="visually-hidden">{{ 'collections.general.sort_by' | t }}</label>
+        <select id="SortBy" name="sort_by" onchange="this.form.submit()">
+          {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+          <option value="manual" {% if sort_by == 'manual' %}selected{% endif %}>{{ 'collections.sorting.manual' | t }}</option>
+          <option value="best-selling" {% if sort_by == 'best-selling' %}selected{% endif %}>{{ 'collections.sorting.best_selling' | t }}</option>
+          <option value="title-ascending" {% if sort_by == 'title-ascending' %}selected{% endif %}>{{ 'collections.sorting.title_ascending' | t }}</option>
+          <option value="title-descending" {% if sort_by == 'title-descending' %}selected{% endif %}>{{ 'collections.sorting.title_descending' | t }}</option>
+          <option value="price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>{{ 'collections.sorting.price_ascending' | t }}</option>
+          <option value="price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>{{ 'collections.sorting.price_descending' | t }}</option>
+          <option value="created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>{{ 'collections.sorting.created_descending' | t }}</option>
+        </select>
+      </form>
+    </div>
+
+    {%- paginate collection.products by 24 -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="product-grid">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        </div>
+        {% render 'pagination', paginate: paginate %}
+      {%- else -%}
+        <p class="collection__empty">{{ 'collections.general.no_matches' | t }}</p>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": []
+}
+{% endschema %}

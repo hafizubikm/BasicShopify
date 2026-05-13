@@ -1,0 +1,94 @@
+<section class="product">
+  <div class="container product__inner">
+    <div class="product__gallery">
+      {%- if product.media.size > 0 -%}
+        <div class="product__media-main">
+          {{ product.featured_media | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600,900,1200', alt: product.featured_media.alt }}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="product__media-thumbs">
+            {%- for media in product.media -%}
+              <button type="button" class="product__thumb" data-media-id="{{ media.id }}">
+                {{ media | image_url: width: 160 | image_tag: loading: 'lazy', alt: media.alt }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'product__media-main' }}
+      {%- endif -%}
+    </div>
+
+    <div class="product__details">
+      {%- if product.vendor != blank -%}
+        <p class="product__vendor">{{ product.vendor }}</p>
+      {%- endif -%}
+      <h1 class="product__title">{{ product.title }}</h1>
+
+      <div class="product__price">
+        {% render 'price', product: product %}
+      </div>
+
+      {% form 'product', product, class: 'product__form', data-product-form: '' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <div class="product__option" data-option-index="{{ forloop.index0 }}">
+              <label class="product__option-label">{{ option.name }}</label>
+              <div class="product__option-values">
+                {%- for value in option.values -%}
+                  <button
+                    type="button"
+                    class="product__option-value {% if option.selected_value == value %}is-selected{% endif %}"
+                    data-option-value="{{ value | escape }}"
+                    data-option-position="{{ option.position }}">
+                    {{ value }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <div class="product__quantity">
+          <label for="Quantity" class="product__option-label">{{ 'products.product.quantity' | t }}</label>
+          <input id="Quantity" type="number" name="quantity" value="1" min="1" class="product__quantity-input">
+        </div>
+
+        <button
+          type="submit"
+          name="add"
+          class="btn btn--primary btn--large product__submit"
+          {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
+          data-add-to-cart>
+          <span data-add-to-cart-text>
+            {%- if product.selected_or_first_available_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </span>
+        </button>
+      {% endform %}
+
+      {%- if product.description != blank -%}
+        <div class="product__description">
+          <h2 class="product__section-heading">{{ 'products.product.description' | t }}</h2>
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <script type="application/json" data-product-json>
+    {{ product | json }}
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": []
+}
+{% endschema %}

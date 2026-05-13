@@ -1,0 +1,50 @@
+<section class="section value-props">
+  <div class="container">
+    <div class="value-props__list">
+      {%- for block in section.blocks -%}
+        <div class="value-prop" {{ block.shopify_attributes }}>
+          <div class="value-prop__icon">{% render 'icon', name: block.settings.icon %}</div>
+          <h4 class="value-prop__title">{{ block.settings.title }}</h4>
+          <p class="value-prop__text">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Value props",
+  "blocks": [
+    {
+      "type": "prop",
+      "name": "Prop",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "truck",
+          "options": [
+            { "value": "truck", "label": "Truck" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "return", "label": "Return" },
+            { "value": "support", "label": "Support" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "prop", "settings": { "icon": "truck", "title": "Free shipping", "text": "On orders over $75 within the US." } },
+      { "type": "prop", "settings": { "icon": "return", "title": "Easy returns", "text": "30-day returns on every order." } },
+      { "type": "prop", "settings": { "icon": "shield", "title": "2-year warranty", "text": "Premium gear built to outlast." } },
+      { "type": "prop", "settings": { "icon": "support", "title": "Expert support", "text": "Real athletes, real advice." } }
+    ]
+  },
+  "presets": [{ "name": "Value props" }]
+}
+{% endschema %}

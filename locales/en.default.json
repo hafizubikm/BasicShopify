@@ -1,0 +1,79 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "menu": "Menu",
+      "close": "Close",
+      "open_cart": "Open cart"
+    },
+    "search": {
+      "placeholder": "Search products...",
+      "submit": "Search"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you were looking for does not exist.",
+      "link": "Continue shopping"
+    },
+    "newsletter": {
+      "heading": "Join the team",
+      "subtext": "Sign up for training tips, drops and members-only deals.",
+      "placeholder": "Email address",
+      "submit": "Subscribe"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "from": "From",
+      "sale": "Sale",
+      "quantity": "Quantity",
+      "description": "Description",
+      "vendor": "Brand"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "empty": "Your cart is empty",
+      "continue_shopping": "Continue shopping",
+      "view_cart": "View cart",
+      "subtotal": "Subtotal",
+      "checkout": "Checkout",
+      "remove": "Remove",
+      "taxes_note": "Taxes and shipping calculated at checkout"
+    },
+    "notification": {
+      "added": "Added to cart"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "No products found",
+      "sort_by": "Sort by",
+      "all_products": "All products"
+    },
+    "sorting": {
+      "manual": "Featured",
+      "best_selling": "Best selling",
+      "title_ascending": "A–Z",
+      "title_descending": "Z–A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "created_descending": "Newest"
+    }
+  },
+  "blogs": {
+    "article": {
+      "read_more": "Read more",
+      "posted_in": "Posted in",
+      "by_author": "by"
+    }
+  }
+}

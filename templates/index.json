@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "NEW ARRIVALS",
+        "heading": "Train harder. Run faster.",
+        "subtext": "Premium gear engineered for athletes who never settle.",
+        "button_label": "Shop now",
+        "alignment": "left"
+      }
+    },
+    "value-props": {
+      "type": "value-props"
+    },
+    "categories": {
+      "type": "category-grid",
+      "settings": {
+        "heading": "Shop by sport"
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Best sellers",
+        "product_count": 4
+      }
+    },
+    "promo": {
+      "type": "promo-banner",
+      "settings": {
+        "eyebrow": "LIMITED DROP",
+        "heading": "Built for the long run",
+        "button_label": "Explore"
+      }
+    }
+  },
+  "order": ["hero", "value-props", "categories", "featured", "promo"]
+}

@@ -1,0 +1,58 @@
+<section class="section category-grid">
+  <div class="container">
+    <header class="section__header">
+      <h2 class="section__heading">{{ section.settings.heading }}</h2>
+    </header>
+
+    <div class="category-grid__list">
+      {%- for block in section.blocks -%}
+        {%- assign coll = collections[block.settings.collection] -%}
+        <a href="{{ coll.url | default: block.settings.link }}" class="category-tile" {{ block.shopify_attributes }}>
+          <div class="category-tile__media">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400,800,1200', alt: block.settings.label }}
+            {%- elsif coll.image != blank -%}
+              {{ coll.image | image_url: width: 800 | image_tag: loading: 'lazy', widths: '400,800,1200', alt: coll.title }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'category-tile__placeholder' }}
+            {%- endif -%}
+          </div>
+          <div class="category-tile__body">
+            <h3 class="category-tile__label">{{ block.settings.label | default: coll.title }}</h3>
+            <span class="category-tile__cta">Shop →</span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category grid",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by sport" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Category tile",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "url", "id": "link", "label": "Link (if no collection)" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "tile", "settings": { "label": "Running" } },
+      { "type": "tile", "settings": { "label": "Training" } },
+      { "type": "tile", "settings": { "label": "Cycling" } },
+      { "type": "tile", "settings": { "label": "Outdoor" } }
+    ]
+  },
+  "presets": [{ "name": "Category grid" }]
+}
+{% endschema %}

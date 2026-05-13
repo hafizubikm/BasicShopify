@@ -1,0 +1,31 @@
+<section class="section list-collections">
+  <div class="container">
+    <header class="section__header">
+      <h1 class="section__heading">{{ 'collections.general.all_products' | t }}</h1>
+    </header>
+    <div class="category-grid__list">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" class="category-tile">
+          <div class="category-tile__media">
+            {%- if collection.image != blank -%}
+              {{ collection.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: collection.title }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'category-tile__placeholder' }}
+            {%- endif -%}
+          </div>
+          <div class="category-tile__body">
+            <h3 class="category-tile__label">{{ collection.title }}</h3>
+            <span class="category-tile__cta">Shop →</span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "List collections",
+  "settings": []
+}
+{% endschema %}

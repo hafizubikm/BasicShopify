@@ -1,0 +1,20 @@
+{%- liquid
+  if product
+    assign price = product.price
+    assign compare_at = product.compare_at_price
+    assign price_varies = product.price_varies
+  else
+    assign price = variant.price
+    assign compare_at = variant.compare_at_price
+  endif
+-%}
+
+<span class="price">
+  {%- if compare_at > price -%}
+    <span class="price__sale">{{ price | money }}</span>
+    <s class="price__compare">{{ compare_at | money }}</s>
+  {%- else -%}
+    {%- if price_varies -%}<span class="price__from">{{ 'products.product.from' | t }}</span> {% endif -%}
+    <span class="price__regular">{{ price | money }}</span>
+  {%- endif -%}
+</span>

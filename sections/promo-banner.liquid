@@ -1,0 +1,24 @@
+<section class="promo-banner" {% if section.settings.image != blank %}style="background-image: url('{{ section.settings.image | image_url: width: 2000 }}')"{% endif %}>
+  <div class="promo-banner__overlay"></div>
+  <div class="container promo-banner__inner">
+    <p class="promo-banner__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="promo-banner__heading">{{ section.settings.heading }}</h2>
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link }}" class="btn btn--secondary">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Promo banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "LIMITED DROP" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built for the long run" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Explore" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Promo banner" }]
+}
+{% endschema %}

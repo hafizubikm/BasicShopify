@@ -1,0 +1,19 @@
+{
+  "current": {
+    "logo_width": 140,
+    "color_background": "#ffffff",
+    "color_text": "#111111",
+    "color_accent": "#ff5a1f",
+    "color_dark": "#0a0a0a",
+    "color_muted": "#f4f4f4",
+    "type_body": "system"
+  },
+  "presets": {
+    "Default": {
+      "color_accent": "#ff5a1f"
+    },
+    "Performance Blue": {
+      "color_accent": "#1f6fff"
+    }
+  }
+}

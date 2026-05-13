@@ -1,0 +1,32 @@
+<section class="newsletter">
+  <div class="container newsletter__inner">
+    <div class="newsletter__copy">
+      <h2 class="newsletter__heading">{{ section.settings.heading | default: 'general.newsletter.heading' | t }}</h2>
+      <p class="newsletter__subtext">{{ section.settings.subtext | default: 'general.newsletter.subtext' | t }}</p>
+    </div>
+    {% form 'customer', class: 'newsletter__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label for="NewsletterEmail" class="visually-hidden">{{ 'general.newsletter.placeholder' | t }}</label>
+      <input
+        id="NewsletterEmail"
+        type="email"
+        name="contact[email]"
+        placeholder="{{ 'general.newsletter.placeholder' | t }}"
+        required>
+      <button type="submit" class="btn btn--primary">{{ 'general.newsletter.submit' | t }}</button>
+      {%- if form.posted_successfully? -%}
+        <p class="newsletter__success">Thanks for signing up.</p>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "subtext", "label": "Subtext" }
+  ]
+}
+{% endschema %}

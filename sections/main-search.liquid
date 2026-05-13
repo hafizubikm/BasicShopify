@@ -1,0 +1,37 @@
+<section class="search">
+  <div class="container">
+    <h1 class="search__title">
+      {%- if search.performed -%}
+        {{ search.results_count }} results for "{{ search.terms | escape }}"
+      {%- else -%}
+        Search
+      {%- endif -%}
+    </h1>
+
+    <form action="{{ routes.search_url }}" method="get" class="search__form" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}">
+      <button type="submit" class="btn btn--primary">{{ 'general.search.submit' | t }}</button>
+    </form>
+
+    {%- if search.performed -%}
+      {%- paginate search.results by 24 -%}
+        {%- if search.results.size > 0 -%}
+          <div class="product-grid">
+            {%- for item in search.results -%}
+              {%- if item.object_type == 'product' -%}
+                {% render 'product-card', product: item %}
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+          {% render 'pagination', paginate: paginate %}
+        {%- else -%}
+          <p>{{ 'collections.general.no_matches' | t }}</p>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

@@ -1,0 +1,56 @@
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <button class="site-header__nav-toggle" type="button" aria-label="{{ 'general.accessibility.menu' | t }}" data-nav-toggle>
+      {% render 'icon', name: 'menu' %}
+    </button>
+
+    <a href="{{ routes.root_url }}" class="site-header__logo">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: settings.logo_width | image_tag: alt: shop.name, widths: '120,240,480', loading: 'eager' }}
+      {%- else -%}
+        <span class="site-header__wordmark">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="site-nav" aria-label="Primary" data-nav>
+      <ul class="site-nav__list">
+        {%- for link in linklists[section.settings.menu].links -%}
+          <li class="site-nav__item">
+            <a href="{{ link.url }}" class="site-nav__link {% if link.active %}is-active{% endif %}">
+              {{ link.title }}
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="{{ routes.search_url }}" class="site-header__action" aria-label="Search">
+        {% render 'icon', name: 'search' %}
+      </a>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="site-header__action" aria-label="Account">
+          {% render 'icon', name: 'user' %}
+        </a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="site-header__action site-header__cart" aria-label="{{ 'general.accessibility.open_cart' | t }}">
+        {% render 'icon', name: 'cart' %}
+        <span class="site-header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

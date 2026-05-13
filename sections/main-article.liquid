@@ -1,0 +1,18 @@
+<article class="article">
+  <div class="container container--narrow">
+    <header class="article__header">
+      <p class="article__meta">{{ article.published_at | date: '%b %d, %Y' }} · {{ 'blogs.article.by_author' | t }} {{ article.author }}</p>
+      <h1 class="article__title">{{ article.title }}</h1>
+    </header>
+    {%- if article.image -%}
+      <div class="article__media">
+        {{ article.image | image_url: width: 1600 | image_tag: loading: 'eager', alt: article.title }}
+      </div>
+    {%- endif -%}
+    <div class="article__content rte">{{ article.content }}</div>
+  </div>
+</article>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}
