@@ -13,7 +13,7 @@
   }
 
   // Product page: variant selection + ATC
-  const productForm = document.querySelector('[data-product-form]');
+  const productForm = document.getElementById('ProductForm');
   if (productForm) {
     const productJsonEl = document.querySelector('[data-product-json]');
     let product = null;

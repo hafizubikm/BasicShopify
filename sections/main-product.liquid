@@ -29,7 +29,7 @@
         {% render 'price', product: product %}
       </div>
 
-      {% form 'product', product, class: 'product__form', data-product-form: '' %}
+      {% form 'product', product, class: 'product__form', id: 'ProductForm' %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
 
         {%- unless product.has_only_default_variant -%}

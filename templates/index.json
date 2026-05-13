@@ -10,14 +10,28 @@
         "alignment": "left"
       }
     },
-    "value-props": {
-      "type": "value-props"
+    "value_props": {
+      "type": "value-props",
+      "blocks": {
+        "shipping": { "type": "prop", "settings": { "icon": "truck", "title": "Free shipping", "text": "On orders over $75 within the US." } },
+        "returns":  { "type": "prop", "settings": { "icon": "return", "title": "Easy returns", "text": "30-day returns on every order." } },
+        "warranty": { "type": "prop", "settings": { "icon": "shield", "title": "2-year warranty", "text": "Premium gear built to outlast." } },
+        "support":  { "type": "prop", "settings": { "icon": "support", "title": "Expert support", "text": "Real athletes, real advice." } }
+      },
+      "block_order": ["shipping", "returns", "warranty", "support"]
     },
     "categories": {
       "type": "category-grid",
       "settings": {
         "heading": "Shop by sport"
-      }
+      },
+      "blocks": {
+        "running":  { "type": "tile", "settings": { "label": "Running" } },
+        "training": { "type": "tile", "settings": { "label": "Training" } },
+        "cycling":  { "type": "tile", "settings": { "label": "Cycling" } },
+        "outdoor":  { "type": "tile", "settings": { "label": "Outdoor" } }
+      },
+      "block_order": ["running", "training", "cycling", "outdoor"]
     },
     "featured": {
       "type": "featured-collection",
@@ -35,5 +49,5 @@
       }
     }
   },
-  "order": ["hero", "value-props", "categories", "featured", "promo"]
+  "order": ["hero", "value_props", "categories", "featured", "promo"]
 }
